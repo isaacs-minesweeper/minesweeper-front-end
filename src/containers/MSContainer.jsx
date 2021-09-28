@@ -5,10 +5,12 @@ import { useMines } from '../hooks/useMines';
 
 const MinesweeperContainer = () => {
   const mines = useMines();
-  console.log(mines);
   const iterator = useIterator()[0];
-
-  return <MineArray mines={mines} iterator={iterator} />;
+  // if (mines[0])
+  //   mines[1](mines[0].mines.split(','));
+  if (mines.mines)
+    return <MineArray mines={mines.mines} iterator={iterator} />;
+  return <></>;
 };
 
 export default MinesweeperContainer;
