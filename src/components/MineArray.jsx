@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MineRow } from './MineRow';
 import { calculateAdjacent } from '../services/calculateAdjacency';
 
-const MineArray = ({ mines, iterator }) => {
+const MineArray = ({ mines, iterator, num, total }) => {
   const newRows = mines.split(',');
   const newArray = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
   const adjacencyArray = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
@@ -21,11 +21,15 @@ const MineArray = ({ mines, iterator }) => {
   }
   let row = 0;
   return (
-    <p style={{ backgroundColor: 'gray', width: '39.1rem', height: '49%' }}>
-      {newArray.map((mineRow) => {
-        return <MineRow row={mineRow} key={row++}/>;
-      })}
-    </p>
+    <>
+      <p style={{ backgroundColor: 'gray', width: '39.1rem', height: '49%' }}>
+        {newArray.map((mineRow) => {
+          return <MineRow row={mineRow} key={row++}/>;
+        })}
+      </p>
+      <div>Total mines: {num}</div>
+      <div>Mines on every board on the server: {total}</div>
+    </>
   );
 };
 
@@ -33,5 +37,7 @@ export default MineArray;
 
 MineArray.propTypes = {
   mines: PropTypes.string.isRequired,
-  iterator: PropTypes.number.isRequired
+  iterator: PropTypes.number.isRequired,
+  num: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired
 };
