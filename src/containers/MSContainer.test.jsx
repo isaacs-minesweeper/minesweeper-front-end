@@ -18,16 +18,20 @@ describe('container test', () => {
 //   afterAll(() => mockServer.close());
 
   it('testing the container', async () => {
-  //     const { container } = render(
-  //       <MemoryRouter>
-  //         <MinesweeperContainer />
-  //       </MemoryRouter>);
-  //     const button = await screen.findAllByRole('button');
-  //     userEvent.click(button[0]);
-  //     return waitFor(() => {
-  //       expect(button[0]).not.toBeEmptyDOMElement();
-  //     });
-    expect(2 + 2).toEqual(4);
+    const { container } = render(
+      <MemoryRouter>
+        <MinesweeperContainer />
+      </MemoryRouter>);
+    const button = await screen.findAllByRole('button');
+    const ninetynine = await screen.findByText('Total mines:', { exact: true });
+    const allMines = await screen.findByText('Mines on every board on the server:', { exact: false });
+    userEvent.click(button[0]);
+    return waitFor(() => {
+      expect(button[0]).not.toBeEmptyDOMElement();
+      expect(ninetynine).not.toBeEmptyDOMElement();
+      expect(allMines).not.toBeEmptyDOMElement();
+    });
+    // expect(2 + 2).toEqual(4);
     // heroku was being lame and I couldn't test with local host
   });
 });
